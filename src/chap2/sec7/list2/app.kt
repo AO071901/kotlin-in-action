@@ -1,6 +1,6 @@
-package chap2.sec7.list72
+package chap2.sec7.list2
 
-import chap2.sec7.list71.Point
+import chap2.sec7.list1.Point
 
 fun main(args: Array<String>) {
 

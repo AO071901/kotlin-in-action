@@ -1,4 +1,4 @@
-package chap2.sec7.list71
+package chap2.sec7.list1
 
 
 data class Point(val x: Int, val y: Int) {

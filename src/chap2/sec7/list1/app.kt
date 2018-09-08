@@ -1,4 +1,4 @@
-package chap2.sec7.list71
+package chap2.sec7.list1
 
 
 fun main(args: Array<String>) {
