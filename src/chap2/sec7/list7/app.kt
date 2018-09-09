@@ -1,7 +1,9 @@
 package chap2.sec7.list7
 
+import chap2.sec7.MutablePoint
 import chap2.sec7.Person
 import chap2.sec7.Point
+import chap2.sec7.Rectangle
 
 fun main(args: Array<String>) {
     
@@ -27,6 +29,15 @@ fun main(args: Array<String>) {
     println(p.get(0))
     println(p.get(1))
     
+    // 7.10
+    val mp = MutablePoint(10, 20)
+    mp[1] = 42
+    println(mp)
+    
+    // 7.11
+    val rect = Rectangle(Point(10, 20), Point(50,50))
+    println(Point(20,30) in rect)
+    println(Point(5,5) in rect)
 }
         
 operator fun Point.get(index: Int): Int {
@@ -36,4 +47,18 @@ operator fun Point.get(index: Int): Int {
         else ->
             throw IndexOutOfBoundsException("Invalid coordinate $index")
     }
+}
+
+operator fun MutablePoint.set(index: Int, value: Int) {
+    when(index) {
+        0 -> x = value
+        1 -> y = value
+        else ->
+            throw IndexOutOfBoundsException("Invalid coordinate $index")
+    }
+}
+
+operator fun Rectangle.contains(p: Point): Boolean {
+    return p.x in upperLeft.x until lowerRight.x &&
+            p.y in upperLeft.y until lowerRight.y
 }
