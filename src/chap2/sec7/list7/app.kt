@@ -4,6 +4,7 @@ import chap2.sec7.MutablePoint
 import chap2.sec7.Person
 import chap2.sec7.Point
 import chap2.sec7.Rectangle
+import java.time.LocalDate
 
 fun main(args: Array<String>) {
     
@@ -38,6 +39,16 @@ fun main(args: Array<String>) {
     val rect = Rectangle(Point(10, 20), Point(50,50))
     println(Point(20,30) in rect)
     println(Point(5,5) in rect)
+    
+    // 7.12
+    val now = LocalDate.now()
+    val vacation = now..now.plusDays(10)
+    println(now.plusWeeks(1) in vacation)
+    
+    val n = 9
+    println(0..(n + 1))
+    
+    (0..n).forEach { print(it) }
 }
         
 operator fun Point.get(index: Int): Int {
@@ -62,3 +73,15 @@ operator fun Rectangle.contains(p: Point): Boolean {
     return p.x in upperLeft.x until lowerRight.x &&
             p.y in upperLeft.y until lowerRight.y
 }
+
+operator fun ClosedRange<LocalDate>.iterator(): Iterator<LocalDate> =
+        object: Iterator<LocalDate> {
+            var current = start
+            
+            override fun hasNext() =
+                    current <= endInclusive
+            
+            override fun next() = current.apply { 
+                current = plusDays(1)
+            }
+        }
